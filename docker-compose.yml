@@ -6,7 +6,7 @@ services:
       context: .
       x-bake:
         tags:
-          - ghcr.io/matti/expecter
+          - ghcr.io/matti/expecter:${GITHUB_SHA}
         platforms:
           - linux/amd64
           - linux/arm64
