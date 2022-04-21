@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+_echoerr() {
+  >&2 echo $@
+}
+
+export CURLOPT_DNS_CACHE_TIMEOUT=1
+
+url=$1
+expected=$2
+times=$3
+delay=$4
+
+content_matched=0
+while true; do
+  content=$(curl -L --max-time 3 --silent ${url} || true)
+  case "$content" in
+    *${expected}*)
+      content_matched=$((content_matched + 1))
+      _echoerr "${url} as expected ${content_matched} / ${times}"
+    ;;
+    *)
+      _echoerr "${url} not as expected"
+      content_matched=0
+    ;;
+  esac
+
+  [ "$content_matched" = "$times" ] && break
+
+  sleep $delay & wait
+done
