@@ -5,9 +5,6 @@ services:
     build:
       context: .
       x-bake:
-        cache-from:
-          - ghcr.io/${GITHUB_REPOSITORY}:cache
-        pull: true
         tags:
           - ghcr.io/${GITHUB_REPOSITORY}:${GITHUB_SHA}
         platforms:
