@@ -5,8 +5,11 @@ services:
     build:
       context: .
       x-bake:
+        cache-from:
+          - ghcr.io/${GITHUB_REPOSITORY}:cache
+        pull: true
         tags:
-          - ghcr.io/matti/expecter:${GITHUB_SHA}
+          - ghcr.io/${GITHUB_REPOSITORY}:${GITHUB_SHA}
         platforms:
           - linux/amd64
           - linux/arm64
