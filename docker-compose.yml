@@ -6,7 +6,7 @@ services:
       context: .
       x-bake:
         tags:
-          - mattipaksula/expecter
+          - ghcr.io/matti/expecter
         platforms:
           - linux/amd64
           - linux/arm64

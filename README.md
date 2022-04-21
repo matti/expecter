@@ -13,3 +13,9 @@ www.example.com as expected 1 / 3
 www.example.com as expected 2 / 3
 www.example.com as expected 3 / 3
 ```
+
+# publish
+
+```
+$ docker buildx bake --push
+```
