@@ -15,3 +15,5 @@ jobs:
       - run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
       - run: docker buildx create --use
       - run: docker buildx bake --push
+      - run: docker tag ghcr.io/${GITHUB_REPOSITORY}:${GITHUB_SHA} ghcr.io/${GITHUB_REPOSITORY}:cache
+      - run: docker push ghcr.io/${GITHUB_REPOSITORY}:cache
